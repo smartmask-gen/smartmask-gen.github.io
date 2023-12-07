@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SmartMask: Context Aware High-Fidelity Mask Generation for Fine-grained Object Insertion and Layout Control">
+  <meta name="keywords" content="SmartMask: Context Aware High-Fidelity Mask Generation for Fine-grained Object Insertion and Layout Control">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartMask: Context Aware High-Fidelity Mask Generation for Fine-grained Object Insertion and Layout Control</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link href="/assets/images/icon.png" rel="icon" sizes="32x32" type="image/png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <!-- <script src="./static/js/target.js"></script> -->
+  <base target="_blank">
+</head>
+<body>
+
+
+<!-- Navigation bar for visiting other research pages -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://1jsingh.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://1jsingh.github.io/divide-evaluate-and-refine">
+                Eval-and-Refine (NeurIPS-2023)
+            </a>
+          <a class="navbar-item" href="https://1jsingh.github.io/gradop">
+            GradOP-Guided-Image-Synthesis (CVPR-2023)
+          </a>
+          <a class="navbar-item" href="https://1jsingh.github.io/paint2pix">
+            Paint2pix (ECCV-2022)
+          </a>
+          <a class="navbar-item" href="https://1jsingh.github.io/intelli-paint">
+            Intelli-paint (ECCV-2022)
+          </a>
+          <a class="navbar-item" href="https://1jsingh.github.io/semantic-guidance">
+            Semantic-Guidance (CVPR-2021)
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span style="color: #007bff;">SmartMask:</span> Context Aware High-Fidelity Mask Generation for Fine-grained Object Insertion and Layout Control</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://1jsingh.github.io/">Jaskirat Singh</a><sup>1,2</sup>&emsp;</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=TkVHKDgAAAAJ&hl=en">Jianming Zhang</a><sup>1</sup>
+                &emsp;
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=1ytghtEAAAAJ&hl=en">Qing Liu</a><sup>1</sup>
+                &emsp;
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=fyfSNwIAAAAJ&hl=en">Cameron Smith</a><sup>1</sup>
+                &emsp;
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=R0bnqaAAAAAJ&hl=en">Zhe Lin</a><sup>1</sup>
+                &emsp;
+              </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=vNHqr3oAAAAJ&hl=en">Liang Zheng</a><sup>1,2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Adobe Research&emsp;&emsp;</span>
+            <span class="author-block"><sup>2</sup>The Australian National University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- png Link. -->
+              <span class="link-block">
+                <a href="https://1jsingh.github.io/publications/gradopt-guided-synthesis.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a href="https://1jsingh.github.io/publications/gradopt-guided-synthesis.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=Yk83RPCOa2o&ab_channel=anucvml"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Demo Link. -->
+              <!-- <span class="link-block">
+                <a href="http://exposition.cecs.anu.edu.au:6009/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-paint-brush"></i>
+                  </span>
+                  <span>Demo</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/1jsingh/GradOP-Guided-Image-Synthesis"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a target="_self" href="#citation"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Cite</span>
+                </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body" text-align: center>
+      <img src="./docs/smartmask/multi-obj-insertion-p2-v2.png" width=100%/>  
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <h2 class=" has-text-justified">
+        <br> 
+        <b>Overview.</b> We propose a novel stroke based guided image synthesis framework which <emph>(Left)</emph> resolves the intrinsic domain shift problem in prior works (b), wherein the final images lack details and often resemble simplistic 
+        representations of the target domain (e) (generated using only text-conditioning).
+        Iteratively reperforming the guided synthesis with the generated outputs (c) seems to improve realism but it is expensive and the generated outputs 
+        tend to lose faithfulness with the reference (a) with each iteration. <emph>(Right)</emph> Additionally, the user is also able to specify the semantics of different painted regions without requiring any additional training or finetuning.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- sample results -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h3 class="subtitle has-text-centered">
+        <b>Interactive Results (Stable Diffusion)</b>
+      </h3>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p5.png">
+        </div>
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p4.png">
+        </div>
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p6.png">
+        </div>
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p7.png">
+        </div>
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p1.png">
+        </div>
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p2.png">
+        </div>
+        <div class="item-simple item-steve">
+          <img src="./docs/gradop/sample-results-sdedit-p3.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop alternate-section">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The field of generative image inpainting and object insertion has made significant progress with the recent advent of latent diffusion models. Utilizing a precise object mask can greatly enhance these applications. However, due to the challenges users encounter in creating high-fidelity masks, there is a tendency for these methods to rely on more coarse masks (e.g., bounding box) for these applications. This results in limited control and compromised background content preservation. To overcome these limitations, we introduce SmartMask, which allows any novice user to create detailed masks for precise object insertion. 
+    Combined with a ControlNet-Inpaint model, our experiments demonstrate that SmartMask achieves superior object insertion quality, preserving the background content more effectively than previous methods. 
+    Notably, unlike prior works the proposed approach can also be used even without user-mask guidance, which allows it to perform mask-free object insertion at diverse positions and scales.
+    Furthermore, we find that when used iteratively  with a novel instruction-tuning based planning model, SmartMask can be used to design detailed layouts from scratch. As compared with user-scribble based layout design, we observe that SmartMask allows for better quality outputs with layout-to-image generation methods.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+</section>
+
+
+<!-- other sections -->
+<section class="hero">
+<!-- Paper video. -->
+<div class="hero-body is-small">
+<div class="container alternate-section">
+  <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">SmartMask for Mask-free Object Insertion</h2>
+        <figure>
+          <img src="./docs/smartmask/method-overview-combined-v2.png" width=100%/>
+          <!-- <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption> -->
+        </figure>
+        <p style="text-align:justify"> 
+          <br>
+          <!-- (a) Given a reference painting <emph>y</emph> and text prompt <emph>\tau_{text}</emph>, we first formulate the guided synthesis problem as the solution $x^\star$ of a constrained optimization problem with 2 properties: 1) $x^\star$ lies in the subspace $\mathcal{S}_{\tau_{text}}$ of outputs conditioned only on the text, and, 2) upon painting $x$ we should recover reference painting $y$. While computing an exact solution of this optimization is infeasible, we show that an approximation can be obtained by solving the unconstrained optimization in (b). Here we first use gradient descent to compute a point $x^\star$ close to a random sample $x_{\tau_{text}} \in \mathcal{S}_{\tau_{text}}$, while still minimizing the painting loss $\mathcal{L}(f(x),y)$. This $x^\star$ is usually non-photorealistic due to gradient descent. We therefore use the diffusion based inversion from \cite{song2020denoising} to map it back to target domain $\mathcal{S}_{\tau_{text}}$.  -->
+          <!-- <figcaption> -->
+            <strong>Method Overview.</strong> A key idea behind SmartMask is to leverage semantic amodal segmentation data in order to obtain high-quality paired training annotations for mask-free single or multi-step object insertion. 
+            During training (top), given a training image <em>I</em> with caption <em>C</em>, we stack <em>k</em> ordered instance maps {A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>k</sub>} to obtain an intermediate semantic map S<sub>k</sub>. 
+            The diffusion model is then trained to predict the instance map A<sub>k+1</sub>, conditional on the semantic map S<sub>k</sub>, T<sub>obj</sub> ← O<sub>k+1</sub> and scene context T<sub>context</sub> ← C. 
+            During inference (bottom), given a real image <em>I</em>, we first use a panoptic segmentation model to compute semantic map S<sub>I</sub>. 
+            The generated semantic layout is then directly used as input to the trained diffusion model in order to predict the fine-grained mask for the inserted object. 
+            The predicted precise-object mask is then used along with SDXL-based ControlNet-Inpaint model to insert the target object in the original input image.
+          <!-- </figcaption> -->
+          <br><br>
+        </p>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="hero-body is-small">
+<div class="container alternate-section">
+  <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Single Object Insertion</h2>
+        <p style="text-align:justify"><b>Comparison with prior works.</b> As compared to prior works, our method provides a more practical approach for improving output realism (with respect to the target domain) while still maintaining the faithfulness with the reference painting.
+          <br><br> </p>
+        <figure>
+          <!-- <img src="./docs/gradop/test.png" width=100%/> -->
+          <img src="./docs/smartmask/inpainting-v11.png" width=100%/>
+          <!-- <img src="./docs/gradop/sdedit-var-p7.png" width=100%/> -->
+          <!-- <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption> -->
+        </figure>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="hero-body is-small">
+    <div class="container alternate-section">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Multiple Object Insertion</h2>
+            <p style="text-align:justify"><b>Comparison with prior works.</b> As compared to prior works, our method provides a more practical approach for improving output realism (with respect to the target domain) while still maintaining the faithfulness with the reference painting.
+              <br><br> </p>
+            <figure>
+              <!-- <img src="./docs/gradop/test.png" width=100%/> -->
+              <img src="./docs/smartmask/multi-obj-insertion-p2-v2.png" width=100%/>
+              <!-- <img src="./docs/gradop/sdedit-var-p7.png" width=100%/> -->
+              <!-- <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption> -->
+            </figure>
+          </div>
+      </div>
+    </div>
+    </div>
+
+
+<div class="hero-body is-small">
+    <div class="container alternate-section">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+            <h2 class="title is-3">Mask-free Insertion</h2>
+            <p style="text-align:justify"><b>Comparison with prior works.</b> As compared to prior works, our method provides a more practical approach for improving output realism (with respect to the target domain) while still maintaining the faithfulness with the reference painting.
+                <br><br> </p>
+            <figure>
+                <!-- <img src="./docs/gradop/test.png" width=100%/> -->
+                <img src="./docs/smartmask/mask-free-insertion-p1-v1.png" width=100%/>
+                <!-- <img src="./docs/gradop/sdedit-var-p7.png" width=100%/> -->
+                <!-- <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption> -->
+            </figure>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+<!--/ Paper video. -->
+<!-- </div> -->
+</section>
+
+
+
+
+<!-- Bibtex -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title" id="citation">BibTeX</h2>
+    <span>If you find our work useful in your research, please consider citing:</span> 
+    <pre><code>@inproceedings{singh2023high,
+      title={High-Fidelity Guided Image Synthesis With Latent Diffusion Models},
+      author={Singh, Jaskirat and Gould, Stephen and Zheng, Liang},
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+      pages={5997--6006},
+      year={2023}
+    }
+  </code></pre>
+  </div>
+</section>
+
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.png">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project. If you want to reuse their source code, please credit them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
