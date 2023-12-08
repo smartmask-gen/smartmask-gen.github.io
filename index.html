@@ -198,7 +198,7 @@
 
 
 <section class="hero teaser">
-  <div class="container is-max-desktop">
+  <div class="container is-max-desktop alternate-section">
     <div class="hero-body" text-align: center>
       <img src="./docs/smartmask/multi-obj-insertion-p2-v2.png" width=100%/>  
       <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
@@ -207,10 +207,15 @@
       </video> -->
       <h2 class=" has-text-justified">
         <br> 
-        <b>Overview.</b> We propose a novel stroke based guided image synthesis framework which <emph>(Left)</emph> resolves the intrinsic domain shift problem in prior works (b), wherein the final images lack details and often resemble simplistic 
+        <!-- <strong><em>SmartMask for multi-object insertion.</em></strong> We observe that prior state-of-the-art image inpainting methods either lead to 1) incorrect objects (missing dog) or visual-artifacts (e.g., people facing bench's back) when adding all objects at once (row-2, row-4), or,
+         2) introduce inconsistency-artifacts (e.g., woman and dog in front of bench in row-3, dog and woman not sitting on same bench in row-5) when adding objects sequentially. 
+         Furthermore, the generated objects (man, woman, and dog in row-5) can appear non-interacting when generated in a sequential manner. 
+         SmartMask helps address this by allowing the user to first add a coherent sequence of context-aware object masks, before using SDXL-based-ControlNet-Inpaint model to perform precise object insertion for multiple objects. -->
+         <strong><em>SmartMask for multi-object insertion.</em></strong> We observe that prior state-of-the-art image inpainting methods either lead to 1) incorrect objects (<em style="color: orange;">missing dog</em>) or visual-artifacts (e.g., <em style="color: orange;">people facing bench's back</em>) when adding all objects at once (row-2, row-4), or, 2) introduce inconsistency-artifacts (e.g., <em style="color: orange;">woman and dog in front of bench</em> in row-3, <em style="color: orange;">dog and woman not sitting on same bench</em> in row-5) when adding objects sequentially. Furthermore, the generated objects (<em style="color: orange;">man, woman, and dog</em> in row-5) can appear non-interacting when generated in a sequential manner. SmartMask helps address this by allowing the user to first add a coherent sequence of context-aware object masks, before using SDXL-based-ControlNet-Inpaint model to perform precise object insertion for multiple objects.
+         <!-- <b>Overview.</b> We propose a novel stroke based guided image synthesis framework which <emph>(Left)</emph> resolves the intrinsic domain shift problem in prior works (b), wherein the final images lack details and often resemble simplistic 
         representations of the target domain (e) (generated using only text-conditioning).
         Iteratively reperforming the guided synthesis with the generated outputs (c) seems to improve realism but it is expensive and the generated outputs 
-        tend to lose faithfulness with the reference (a) with each iteration. <emph>(Right)</emph> Additionally, the user is also able to specify the semantics of different painted regions without requiring any additional training or finetuning.
+        tend to lose faithfulness with the reference (a) with each iteration. <emph>(Right)</emph> Additionally, the user is also able to specify the semantics of different painted regions without requiring any additional training or finetuning. -->
       </h2>
     </div>
   </div>
@@ -274,7 +279,7 @@
   </div>
 </section> -->
 
-<!-- sample results -->
+<!-- sample results
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -306,14 +311,14 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="section">
   <div class="container is-max-desktop alternate-section">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <br><br><h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             The field of generative image inpainting and object insertion has made significant progress with the recent advent of latent diffusion models. Utilizing a precise object mask can greatly enhance these applications. However, due to the challenges users encounter in creating high-fidelity masks, there is a tendency for these methods to rely on more coarse masks (e.g., bounding box) for these applications. This results in limited control and compromised background content preservation. To overcome these limitations, we introduce SmartMask, which allows any novice user to create detailed masks for precise object insertion. 
@@ -375,8 +380,8 @@
   <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Single Object Insertion</h2>
-        <p style="text-align:justify"><b>Comparison with prior works.</b> As compared to prior works, our method provides a more practical approach for improving output realism (with respect to the target domain) while still maintaining the faithfulness with the reference painting.
-          <br><br> </p>
+        <p style="text-align:justify"><b>Comparison with prior works.</b> We observe that as compared to with state-of-the-art image inpainting methods, SmartMask allows the user to perform object insertion while better preserving the background around the inserted object
+            <br><br> </p>
         <figure>
           <!-- <img src="./docs/gradop/test.png" width=100%/> -->
           <img src="./docs/smartmask/inpainting-v11.png" width=100%/>
@@ -393,14 +398,14 @@
       <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3">Multiple Object Insertion</h2>
-            <p style="text-align:justify"><b>Comparison with prior works.</b> As compared to prior works, our method provides a more practical approach for improving output realism (with respect to the target domain) while still maintaining the faithfulness with the reference painting.
-              <br><br> </p>
             <figure>
               <!-- <img src="./docs/gradop/test.png" width=100%/> -->
               <img src="./docs/smartmask/multi-obj-insertion-p2-v2.png" width=100%/>
               <!-- <img src="./docs/gradop/sdedit-var-p7.png" width=100%/> -->
               <!-- <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption> -->
             </figure>
+            <p style="text-align:justify"><strong><em>SmartMask for multi-object insertion.</em></strong> We observe that prior state-of-the-art image inpainting methods either lead to 1) incorrect objects (<em style="color: orange;">missing dog</em>) or visual-artifacts (e.g., <em style="color: orange;">people facing bench's back</em>) when adding all objects at once (row-2, row-4), or, 2) introduce inconsistency-artifacts (e.g., <em style="color: orange;">woman and dog in front of bench</em> in row-3, <em style="color: orange;">dog and woman not sitting on same bench</em> in row-5) when adding objects sequentially. Furthermore, the generated objects (<em style="color: orange;">man, woman, and dog</em> in row-5) can appear non-interacting when generated in a sequential manner. SmartMask helps address this by allowing the user to first add a coherent sequence of context-aware object masks, before using SDXL-based-ControlNet-Inpaint model to perform precise object insertion for multiple objects.
+                <br><br> </p>
           </div>
       </div>
     </div>
@@ -412,7 +417,7 @@
         <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
             <h2 class="title is-3">Mask-free Insertion</h2>
-            <p style="text-align:justify"><b>Comparison with prior works.</b> As compared to prior works, our method provides a more practical approach for improving output realism (with respect to the target domain) while still maintaining the faithfulness with the reference painting.
+            <p style="text-align:justify">  <strong><em>SmartMask for mask-free object insertion.</em></strong> We observe that unlike prior image-inpainting methods which rely on user coarse masks for object location and scale, SmartMask also allows for <em>mask-free object insertion</em>. This allows the user to generate diverse object insertion suggestions for putting the target object (e.g., <em style="color: orange;">ship</em>) in the input image at different positions and scales. Note that the masks are generated in a scene-aware manner, and can therefore account for the existing scene elements (e.g., <em style="color: orange;">man lying on bed</em> in row-5, <em style="color: orange;">car riding down the road</em> in row-3, etc.). Also notice that the object insertion suggestions are generated at different scales: thus objects close to camera are larger and away from camera are smaller (e.g., <em style="color: orange;">motorbike parked beside a car</em> in row-4).
                 <br><br> </p>
             <figure>
                 <!-- <img src="./docs/gradop/test.png" width=100%/> -->
@@ -437,12 +442,11 @@
   <div class="container is-max-desktop content">
     <h2 class="title" id="citation">BibTeX</h2>
     <span>If you find our work useful in your research, please consider citing:</span> 
-    <pre><code>@inproceedings{singh2023high,
-      title={High-Fidelity Guided Image Synthesis With Latent Diffusion Models},
-      author={Singh, Jaskirat and Gould, Stephen and Zheng, Liang},
-      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-      pages={5997--6006},
-      year={2023}
+    <pre><code>@article{singh2023smartmask,
+        title={SmartMask: Context Aware High-Fidelity Mask Generation for Fine-grained Object Insertion and Layout Control},
+        author={Singh, Jaskirat and Zhang, Jianming and Liu, Qing and Smith, Cameron and Lin, Zhe and Zheng, Liang},
+        journal={arXiv preprint},
+        year={2023},
     }
   </code></pre>
   </div>
