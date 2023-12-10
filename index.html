@@ -400,12 +400,13 @@
             <h2 class="title is-3">Multiple Object Insertion</h2>
             <figure>
               <!-- <img src="./docs/gradop/test.png" width=100%/> -->
-              <img src="./docs/smartmask/multi-obj-insertion-p2-v2.png" width=100%/>
+              <img src="./docs/smartmask/multi-obj-insertion-p1-v6.png" width=100%/>
               <!-- <img src="./docs/gradop/sdedit-var-p7.png" width=100%/> -->
               <!-- <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption> -->
             </figure>
-            <p style="text-align:justify"><strong><em>SmartMask for multi-object insertion.</em></strong> We observe that prior state-of-the-art image inpainting methods either lead to 1) incorrect objects (<em style="color: orange;">missing dog</em>) or visual-artifacts (e.g., <em style="color: orange;">people facing bench's back</em>) when adding all objects at once (row-2, row-4), or, 2) introduce inconsistency-artifacts (e.g., <em style="color: orange;">woman and dog in front of bench</em> in row-3, <em style="color: orange;">dog and woman not sitting on same bench</em> in row-5) when adding objects sequentially. Furthermore, the generated objects (<em style="color: orange;">man, woman, and dog</em> in row-5) can appear non-interacting when generated in a sequential manner. SmartMask helps address this by allowing the user to first add a coherent sequence of context-aware object masks, before using SDXL-based-ControlNet-Inpaint model to perform precise object insertion for multiple objects.
-                <br><br> </p>
+            <!-- <p style="text-align:justify"><strong><em>SmartMask for multi-object insertion.</em></strong> We observe that prior state-of-the-art image inpainting methods either lead to 1) incorrect objects (<em style="color: orange;">missing dog</em>) or visual-artifacts (e.g., <em style="color: orange;">people facing bench's back</em>) when adding all objects at once (row-2, row-4), or, 2) introduce inconsistency-artifacts (e.g., <em style="color: orange;">woman and dog in front of bench</em> in row-3, <em style="color: orange;">dog and woman not sitting on same bench</em> in row-5) when adding objects sequentially. Furthermore, the generated objects (<em style="color: orange;">man, woman, and dog</em> in row-5) can appear non-interacting when generated in a sequential manner. SmartMask helps address this by allowing the user to first add a coherent sequence of context-aware object masks, before using SDXL-based-ControlNet-Inpaint model to perform precise object insertion for multiple objects. -->
+            <p style="text-align:justify"><strong><em>SmartMask for multi-object insertion.</em></strong> We observe that prior state-of-the-art image inpainting methods either lead to incorrect objects (row-2, row-4) when adding all objects at once, or, introduce artifacts (e.g., <span style="color: orange;">blurred woman</span> in row-3, <span style="color: orange;">man's face</span> and <span style="color: orange;">woman's dress</span> in row-5) when adding objects sequentially. SmartMask helps address this by allowing the user to first add a sequence of context-aware object masks, before using SDXL-based-ControlNet-Inpaint model to perform precise object insertion for multiple objects.
+              <br><br> </p>
           </div>
       </div>
     </div>
